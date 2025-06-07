@@ -42,14 +42,207 @@ class UIService:
         """Set up custom CSS styles."""
         st.markdown("""
             <style>
-            .stChatMessage {background: #f7f7f8; border-radius: 8px; padding: 10px; margin-bottom: 8px;}
-            .user-msg {background: #e6f7ff; font-weight: 500;}
-            .bot-msg {background: #f7f7f8;}
-            .bot-msg ul, .bot-msg ol {margin-left: 20px; padding-left: 0;}
-            .bot-msg li {margin-bottom: 5px;}
-            .bot-msg table {width: 100%; border-collapse: collapse; margin: 10px 0;}
-            .bot-msg th, .bot-msg td {border: 1px solid #ddd; padding: 8px; text-align: left;}
-            .bot-msg th {background-color: #f2f2f2;}
+            /* Fixed Footer HTML injected at the top of the body for global positioning */
+            html body::after {
+                content: '';
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 50px; /* Adjust height as needed for your footer content */
+                background-color: #fff; /* White Areas */
+                border-top: 1px solid #e9ecef; /* Primary Borders */
+                box-shadow: 0 -2px 4px rgba(0,0,0,0.04); /* Subtle shadow */
+                z-index: 1000; /* Ensure it's on top */
+            }
+            html body::before {
+                content: '© 2025 S3K Technologies | All rights reserved';
+                position: fixed;
+                bottom: 18px; /* Adjust to vertically center the text */
+                left: 0;
+                width: 100%;
+                color: #495057; /* Primary Text */
+                text-align: center;
+                z-index: 1001; /* Ensure text is above the footer background */
+                font-size: 0.9em;
+            }
+
+            /* General body and layout improvements */
+            body {
+                color: #495057; /* Primary Text */
+                background-color: #f8f9fa; /* Main Background */
+                font-family: sans-serif;
+            }
+            
+            /* Ensure content doesn't get hidden by fixed footer */
+            .main .block-container {
+                padding-bottom: 80px; /* Increased padding to account for fixed footer */
+            }
+            
+            /* Sidebar styling */
+            .stSidebar > div:first-child {
+                background-color: #f8f9fa; /* Sidebar Background */
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Subtle shadow for cards */
+            }
+            
+            /* Header styling */
+            .stApp > header {
+                background-color: #fff; /* White Areas */
+                padding: 10px 20px;
+                border-bottom: 2px solid #e9ecef; /* Primary Borders */
+                box-shadow: 0 2px 4px rgba(0,0,0,0.04); /* Header Shadow */
+                position: sticky; /* Make header sticky */
+                top: 0; /* Stick to the top */
+                z-index: 999; /* Ensure it's on top of other content */
+            }
+            
+            /* Custom header content alignment */
+            .stApp > header .st-emotion-cache-18ni7ap.e1fqkh3o1.css-18ni7ap.e1fqkh3o1 {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start; /* Align logo and title to the left */
+                align-items: center;
+            }
+            
+            .stApp > header .st-emotion-cache-18ni7ap.e1fqkh3o1.css-18ni7ap.e1fqkh3o1 > div:first-child {
+                flex-grow: 0; /* No longer need this to grow, keep content together */
+            }
+
+            /* Chat message styling */
+            .stChatMessage {
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 10px;
+                border: 1px solid #e9ecef; /* Message Border */
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Cards Shadow */
+                max-width: 95%;
+            }
+            
+            .user-msg {
+                background: #e9ecef; /* Avatar Background for user message */
+                font-weight: 500;
+                border-bottom-right-radius: 2px;
+                margin-left: auto; /* Align user message to the right */
+                border-color: #dee2e6; /* Secondary Borders */
+                color: #495057;
+            }
+            
+            .bot-msg {
+                background: #f8f9fa; /* Bot Message Background */
+                border-bottom-left-radius: 2px;
+                margin-right: auto; /* Align bot message to the left */
+                color: #495057;
+            }
+            
+            /* List and table styling within bot messages */
+            .bot-msg ul,
+            .bot-msg ol {
+                margin-left: 25px;
+                padding-left: 0;
+            }
+            
+            .bot-msg li {
+                margin-bottom: 8px;
+                line-height: 1.5;
+            }
+            
+            .bot-msg table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0 5px;
+                margin: 15px 0;
+                border: none;
+            }
+            
+            .bot-msg th,
+            .bot-msg td {
+                border: 1px solid #dee2e6; /* Secondary Borders for table cells */
+                padding: 12px;
+                text-align: left;
+                border-radius: 5px;
+            }
+            
+            .bot-msg th {
+                background-color: #e9ecef; /* Light Border for table headers */
+                font-weight: bold;
+                color: #495057; /* Primary Text */
+            }
+            
+            /* Input area and dropdown styling */
+            .stTextInput > div > div > input,
+            .stSelectbox > div:first-child > div {
+                border-radius: 8px;
+                padding: 12px 16px;
+                border: 2px solid #e9ecef; /* Primary Borders */
+                background-color: #fff; /* Input Background */
+                font-size: 14px;
+                color: #495057; /* Primary Text */
+                transition: all 0.2s ease;
+            }
+
+            /* Focus styling for inputs and selectboxes */
+            .stTextInput > div > div > input:focus,
+            .stSelectbox > div:first-child > div:focus-within {
+                outline: none;
+                border-color: #6c757d; /* Focus Borders */
+                box-shadow: 0 0 0 3px rgba(108, 117, 125, 0.1);
+            }
+
+            .stTextInput > label, .stSelectbox > label {
+                font-weight: 600;
+                margin-bottom: 5px;
+                color: #6c757d; /* Label Text */
+            }
+            
+            /* Dropdown arrow customization */
+            .stSelectbox > div:first-child > div {
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236c757d' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+                background-position: right 12px center;
+                background-repeat: no-repeat;
+                background-size: 16px;
+                padding-right: 40px;
+            }
+
+            /* Button styling */
+            .stButton > button {
+                border-radius: 8px;
+                padding: 10px 20px;
+                background-color: #6c757d; /* Button Background */
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+                transition: background-color 0.2s ease;
+            }
+            .stButton > button:hover {
+                background-color: #5a6268; /* Button Hover */
+            }
+            .stButton > button:disabled {
+                background-color: #ced4da; /* Disabled Button */
+                color: #6c757d;
+                cursor: not-allowed;
+            }
+            
+            /* Adjust alignment for Streamlit native chat elements */
+            .st-emotion-cache-user-message {
+                margin-left: auto;
+                text-align: right;
+            }
+
+            .st-emotion-cache-assistant-message {
+                 margin-right: auto;
+                 text-align: left;
+            }
+
+            /* Specific targeting for the header container within stApp */
+            .stApp > div:first-child > div:first-child > div:first-child > div:nth-child(2) {
+                /* This targets the div wrapping the st.container in app.py */
+                padding: 0px !important; /* Remove default padding */
+            }
+
             </style>
         """, unsafe_allow_html=True)
 

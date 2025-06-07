@@ -19,6 +19,14 @@ st.set_page_config(
     layout=LAYOUT
 )
 
+# Header with logo
+with st.container():
+    col1, col2 = st.columns([1, 4])
+    with col1:
+        st.image("https://s3ktech.ai/wp-content/uploads/2025/03/S3Ktech-Logo.png", width=130)
+    with col2:
+        st.markdown("<h1 style='display: inline-block; margin-left: -50px;'> Scanner Support Agent</h1>", unsafe_allow_html=True)
+
 def filter_llm_output(text):
     # Remove lines that look like reasoning or intro/summary statements
     lines = text.split('\n')
@@ -57,8 +65,8 @@ def main():
         st.session_state.chat_history = []
     
     # Display title - use a placeholder for faster loading
-    title_placeholder = st.empty()
-    title_placeholder.title(f"🤖 {PAGE_TITLE}")
+    # title_placeholder = st.empty()
+    # title_placeholder.title(f"🤖 {PAGE_TITLE}") # This is now handled by the custom header
     
     # Create a fresh container for chat history each time
     chat_container = st.container()
@@ -121,5 +129,7 @@ def main():
         # Display the response
         ui.display_response(response, embedding_service.format_sources(results), is_comparison)
 
+    
+
 if __name__ == "__main__":
-    main() 
+    main()
