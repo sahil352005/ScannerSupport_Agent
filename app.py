@@ -19,13 +19,19 @@ st.set_page_config(
     layout=LAYOUT
 )
 
-# Header with logo
+# Header with logo and visit button
 with st.container():
-    col1, col2 = st.columns([1, 4])
+    col1, col2, col3 = st.columns([1, 3, 1])
     with col1:
-        st.image("https://s3ktech.ai/wp-content/uploads/2025/03/S3Ktech-Logo.png", width=130)
+        st.image("https://s3ktech.ai/wp-content/uploads/2025/03/S3Ktech-Logo.png", width=140)
     with col2:
         st.markdown("<h1 style='display: inline-block; margin-left: -50px;'> Scanner Support Agent</h1>", unsafe_allow_html=True)
+    with col3:
+        st.markdown("""
+            <div style="display: flex; justify-content: flex-end; align-items: center; height: 100%;">
+                <a href="https://s3ktech.ai/" target="_blank" class="visit-button">Visit Us</a>
+            </div>
+        """, unsafe_allow_html=True)
 
 def filter_llm_output(text):
     # Remove lines that look like reasoning or intro/summary statements

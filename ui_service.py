@@ -243,6 +243,34 @@ class UIService:
                 padding: 0px !important; /* Remove default padding */
             }
 
+            /* Visit Us Button Styling */
+            .visit-button {
+                display: inline-block;
+                padding: 8px 20px;
+                background-color: #b22222;
+                color: white !important;
+                text-decoration: none;
+                border-radius: 6px;
+                font-weight: 500;
+                font-size: 14px;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                text-align: center;
+                margin-right: 10px;
+            }
+
+            .visit-button:hover {
+                background-color: #189B9B;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                text-decoration: none;
+            }
+
+            /* Adjust header columns alignment */
+            .stApp > header .st-emotion-cache-18ni7ap {
+                align-items: center;
+            }
+
             </style>
         """, unsafe_allow_html=True)
 
@@ -363,4 +391,4 @@ class UIService:
         
         # Display sources if available
         if sources:
-            st.caption(sources) 
+            st.caption(sources)
