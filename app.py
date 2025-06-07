@@ -25,7 +25,7 @@ with st.container():
     with col1:
         st.image("https://s3ktech.ai/wp-content/uploads/2025/03/S3Ktech-Logo.png", width=140)
     with col2:
-        st.markdown("<h1 style='display: inline-block; margin-left: -50px;'> Scanner Support Agent</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='display: inline-block; margin-left: 20px;'> Scanner Support Agent</h1>", unsafe_allow_html=True)
     with col3:
         st.markdown("""
             <div style="display: flex; justify-content: flex-end; align-items: center; height: 100%;">

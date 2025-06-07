@@ -271,6 +271,34 @@ class UIService:
                 align-items: center;
             }
 
+            /* Chat input submit button styling */
+            .stChatInput > div > div > div > button {
+                background-color: #b22222 !important;
+                border-color: #b22222 !important;
+                color: white !important;
+            }
+
+            .stChatInput > div > div > div > button:hover {
+                background-color: #8b0000 !important;
+                border-color: #8b0000 !important;
+                box-shadow: 0 2px 4px rgba(178, 34, 34, 0.2) !important;
+            }
+
+            .stChatInput > div > div > div > button svg {
+                fill: white !important;
+            }
+
+            /* Ensure the button maintains its color */
+            .stChatInput > div > div > div > button::before,
+            .stChatInput > div > div > div > button::after {
+                background-color: #b22222 !important;
+            }
+
+            /* Override any default Streamlit styles */
+            .st-emotion-cache-1ch5132 {
+                background-color: #b22222 !important;
+            }
+
             </style>
         """, unsafe_allow_html=True)
 
