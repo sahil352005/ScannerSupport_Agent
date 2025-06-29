@@ -5,7 +5,7 @@ SUPABASE_URL = "https://szsxuszodpflthkclrck.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN6c3h1c3pvZHBmbHRoa2NscmNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgxNzA1NTgsImV4cCI6MjA2Mzc0NjU1OH0.bx6NtC671WSbgB6S0LKW5V4U1tdxR0y0Oa16_nilhIs"
 
 # API Keys
-GROQ_API_KEY_DEFAULT = "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"
+GROQ_API_KEY_DEFAULT = "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"
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 
 # Model Configuration
